@@ -1,0 +1,85 @@
+students = []
+
+while True:
+    print("\n===== Student Management System =====")
+    print("1. Add Student")
+    print("2. View Students")
+    print("3. Search Student")
+    print("4. Delete Student")
+    print("5. Edit Student")
+    print("6. Exit")
+
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        name = input("Enter student name: ")
+        age = int(input("Enter age: "))
+        grade = float(input("Enter grade: "))
+
+        student = {
+            "name": name,
+            "age": age,
+            "grade": grade
+        }
+        students.append(student)
+        print("Student added successfully!")
+
+    elif choice == "2":
+        if len(students) == 0:
+            print("No students found.")
+        else:
+            for student in students:
+                print(student)
+
+    elif choice == "3":
+        search = input("Enter student name: ")
+        found = False
+        for student in students:
+            if student["name"] == search:
+                print(student)
+                found = True
+
+        if found == False:
+            print("Student not found.")
+
+    elif choice == "4":
+        delete = input("Enter student name: ")
+        for student in students:
+            if student["name"] == delete:
+                students.remove(student)
+                print("Student deleted.")
+                break
+        else:
+            print("Student not found.")
+
+    elif choice == "5":
+        edit_name = input("Enter the name of the student you want to edit: ")
+        found = False
+        for student in students:
+            if student["name"] == edit_name:
+                found = True
+                print("Leave blank if you don't want to change a field.")
+
+                new_name = input(f"New name (current: {student['name']}): ")
+                new_age = input(f"New age (current: {student['age']}): ")
+                new_grade = input(f"New grade (current: {student['grade']}): ")
+
+                if new_name != "":
+                    student["name"] = new_name
+                if new_age != "":
+                    student["age"] = int(new_age)
+                if new_grade != "":
+                    student["grade"] = float(new_grade)
+
+                print("Student updated successfully!")
+                break
+
+        if found == False:
+            print("Student not found.")
+
+    elif choice == "6":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice.")
