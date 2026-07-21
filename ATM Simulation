@@ -1,0 +1,49 @@
+# ATM system - بسيط عشان اتعلمت منه في الكورس
+balance = 1000
+correct_pin = "1234"
+
+def check_balance():
+    print(f"Your balance is: {balance}")
+
+def deposit():
+    global balance
+    amount = float(input("Enter amount to deposit: "))
+    balance = balance + amount
+    print("Deposit successful.")
+
+def withdraw():
+    global balance
+    amount = float(input("Enter amount to withdraw: "))
+    # لازم اتأكد ان الفلوس كفاية قبل السحب
+    if amount <= balance:
+        balance = balance - amount
+        print("Withdrawal successful.")
+    else:
+        print("Insufficient balance.")
+
+# بداية البرنامج - بياخد الـ pin الأول
+pin = input("Enter your PIN: ")
+
+if pin == correct_pin:
+    while True:
+        print("\n===== ATM MENU =====")
+        print("1. Check Balance")
+        print("2. Deposit")
+        print("3. Withdraw")
+        print("4. Exit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            check_balance()
+        elif choice == "2":
+            deposit()
+        elif choice == "3":
+            withdraw()
+        elif choice == "4":
+            print("Thank you for using our ATM.")
+            break
+        else:
+            print("Invalid choice.")
+else:
+    print("Incorrect PIN.")
