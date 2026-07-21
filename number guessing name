@@ -1,0 +1,8 @@
+secret = 7
+guess = int(input("guess the number "))
+if guess == secret:
+   print("correct")
+elif guess > secret:
+   print("lower")
+else:
+    print("higher")
